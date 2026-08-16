@@ -67,7 +67,6 @@ export default function Home() {
   const [tags, setTags] = useState<FloatingTag[]>([]);
   const [showPopup, setShowPopup] = useState(false);
   const [popupNoCount, setPopupNoCount] = useState(0);
-  const [yesDodges, setYesDodges] = useState(0);
   const [yesPos, setYesPos] = useState<{ top: number; left: number } | null>(
     null
   );
@@ -203,7 +202,6 @@ export default function Home() {
   }
 
   function dodgeYesButton() {
-    setYesDodges((d) => d + 1);
     setYesEscaped(true);
     speakName();
     const margin = 80;
@@ -340,12 +338,6 @@ export default function Home() {
                 unacceptable. SAYED HASAN demands you try again. (
                 {popupNoCount} {popupNoCount === 1 ? "attempt" : "attempts"}{" "}
                 rejected)
-              </p>
-            )}
-            {!isMobile && yesDodges > 0 && (
-              <p className="mb-3 text-sm font-bold text-green-400">
-                YES has evaded you {yesDodges}{" "}
-                {yesDodges === 1 ? "time" : "times"}. it will not stop.
               </p>
             )}
             <div className="relative flex h-24 items-center justify-center gap-4">
