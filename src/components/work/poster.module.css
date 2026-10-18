@@ -1,0 +1,156 @@
+/* src/components/work/poster.module.css */
+.art {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--color-ink-2);
+  container-type: size;
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.caption {
+  position: absolute;
+  left: 50%;
+  bottom: 30%;
+  transform: translateX(-50%);
+  padding: 0.35em 0.8em;
+  background: rgb(11 10 9 / 0.75);
+  color: var(--color-ivory);
+  font-size: max(0.5625rem, 1.6cqw);
+  white-space: nowrap;
+}
+
+.docTitle {
+  position: absolute;
+  left: 5%;
+  bottom: max(11%, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
+
+.docTitle :global(.display) {
+  font-size: clamp(1.75rem, 8cqw, 5.5rem);
+}
+
+.docTitle :global(.eyebrow) {
+  font-size: max(0.5625rem, 1.1cqw);
+}
+
+.chip {
+  position: absolute;
+  padding: 0.4em 0.7em;
+  border: 1px solid var(--color-line-strong);
+  background: rgb(11 10 9 / 0.8);
+  color: var(--color-ivory);
+  font-size: max(0.5625rem, 2.1cqw);
+  white-space: nowrap;
+}
+
+/* ── Vertical fan ───────────────────────────────────────────────────────── */
+.fan {
+  background:
+    radial-gradient(ellipse 60% 70% at 50% 60%, rgb(255 92 31 / 0.16), transparent 70%),
+    var(--color-ink-2);
+}
+
+.phone {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 84%;
+  aspect-ratio: 9 / 16;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 3.2cqh;
+  overflow: hidden;
+  container-type: inline-size;
+  box-shadow: 0 2cqh 6cqh rgb(0 0 0 / 0.55);
+}
+
+.phoneLeft {
+  transform: translate(-128%, -48%) rotate(-7deg) scale(0.9);
+  background: linear-gradient(160deg, #241b16, #0f0c0b 70%);
+}
+
+.phoneCenter {
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(170deg, #3a2014, #120d0b 65%);
+}
+
+.phoneRight {
+  transform: translate(28%, -48%) rotate(7deg) scale(0.9);
+  background: linear-gradient(200deg, #1f1a17, #0d0b0a 70%);
+}
+
+.bars {
+  position: absolute;
+  top: 5cqw;
+  left: 6cqw;
+  right: 6cqw;
+  display: flex;
+  gap: 2cqw;
+}
+
+.bars span {
+  flex: 1;
+  height: 1.4cqw;
+  min-height: 2px;
+  border-radius: 2px;
+  background: rgb(242 235 221 / 0.25);
+}
+
+.bars .barOn {
+  background: var(--color-ivory);
+}
+
+.safe {
+  position: absolute;
+  inset: 14% 8% 20% 8%;
+  border: 1px dashed rgb(242 235 221 / 0.18);
+  border-radius: 2px;
+}
+
+.phoneCaption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2cqw;
+  font-size: 15cqw;
+  line-height: 1;
+  color: var(--color-ivory);
+}
+
+.phoneCaption span {
+  padding: 0.06em 0.18em 0.02em;
+}
+
+.hl {
+  background: var(--color-ember);
+  color: var(--color-ink);
+}
+
+.rail {
+  position: absolute;
+  right: 6cqw;
+  bottom: 24%;
+  display: flex;
+  flex-direction: column;
+  gap: 5cqw;
+}
+
+.rail span {
+  width: 8cqw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgb(242 235 221 / 0.22);
+}

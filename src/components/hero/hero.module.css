@@ -1,0 +1,328 @@
+/* src/components/hero/hero.module.css */
+
+/* ── Headline ───────────────────────────────────────────────────────────── */
+.headline {
+  font-size: min(16vw, 10svh);
+}
+
+@media (min-width: 1024px) {
+  .headline {
+    font-size: min(11vw, 16svh);
+  }
+}
+
+.moving {
+  will-change: transform, opacity;
+}
+
+/* ── Slot: where the frame rests ────────────────────────────────────────── */
+.slotArea {
+  container-type: size;
+}
+
+.slot {
+  --ar: 4 / 5;
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  margin-block: auto;
+  aspect-ratio: var(--ar);
+  width: min(100cqw, calc(100cqh * var(--ar)));
+  height: auto;
+  overflow: hidden;
+  background: var(--color-ink-2);
+}
+
+@media (min-width: 1024px) {
+  .slot {
+    --ar: 16 / 9;
+  }
+}
+
+/* ── The expanding window ───────────────────────────────────────────────
+   Only transforms change while scrolling: the window scales from the slot to
+   full-bleed and the picture inside counter-scales, so nothing repaints. */
+.window {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  will-change: transform;
+  background: var(--color-ink-2);
+}
+
+.window[data-ready="true"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.picture {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+/* Corner marks ride the window's edges via translate only. */
+.corner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 21;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  will-change: transform;
+  border-color: rgb(242 235 221 / 0.32);
+  border-style: solid;
+  border-width: 0;
+}
+
+.corner[data-ready="true"] {
+  opacity: 1;
+}
+
+.tl {
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.tr {
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.bl {
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.br {
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+
+.cornerLabel {
+  position: absolute;
+  top: 8px;
+  white-space: nowrap;
+  font-size: 0.625rem;
+  color: rgb(242 235 221 / 0.72);
+}
+
+.tl .cornerLabel {
+  left: 10px;
+}
+
+.tr .cornerLabel {
+  right: 10px;
+}
+
+/* ── Scene: abstract cinematic composition, sized to the viewport ───────── */
+.scene {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100vw;
+  height: 100svh;
+  min-height: 36rem;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    #0d0b0a 0%,
+    #15100d 34%,
+    #2a160c 49.6%,
+    #120d0a 50%,
+    #0b0908 100%
+  );
+}
+
+.sun {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 46vmin;
+  aspect-ratio: 1;
+  transform: translate(-50%, -62%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 55%,
+    #ffd2a8 0%,
+    #ff9a5e 18%,
+    var(--color-ember) 38%,
+    rgb(255 92 31 / 0.35) 56%,
+    rgb(255 92 31 / 0) 71%
+  );
+  clip-path: inset(0 0 38% 0);
+}
+
+.halo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150vmin;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(255 92 31 / 0.18) 0%, rgb(255 92 31 / 0.05) 35%, transparent 62%);
+}
+
+.flare {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 130vmin;
+  height: 2px;
+  transform: translate(-50%, -1px);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 170 120 / 0.5) 30%,
+    rgb(255 236 214 / 0.85) 50%,
+    rgb(255 170 120 / 0.5) 70%,
+    transparent
+  );
+}
+
+.water {
+  position: absolute;
+  inset: 50% 0 0 0;
+  background:
+    repeating-linear-gradient(to bottom, rgb(255 140 80 / 0.08) 0 1px, transparent 1px 7px),
+    radial-gradient(ellipse 22vmin 45% at 50% 0%, rgb(255 110 50 / 0.35), transparent 70%);
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+.horizon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: rgb(242 235 221 / 0.16);
+}
+
+.thirds {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, transparent calc(33.333% - 0.5px), rgb(242 235 221 / 0.06) 33.333%, transparent calc(33.333% + 0.5px)),
+    linear-gradient(to right, transparent calc(66.666% - 0.5px), rgb(242 235 221 / 0.06) 66.666%, transparent calc(66.666% + 0.5px)),
+    linear-gradient(to bottom, transparent calc(33.333% - 0.5px), rgb(242 235 221 / 0.06) 33.333%, transparent calc(33.333% + 0.5px)),
+    linear-gradient(to bottom, transparent calc(66.666% - 0.5px), rgb(242 235 221 / 0.06) 66.666%, transparent calc(66.666% + 0.5px));
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 45%, transparent 40%, rgb(0 0 0 / 0.55) 100%);
+}
+
+.cardScrim {
+  position: absolute;
+  inset: 40% 0 0 0;
+  background: linear-gradient(to top, rgb(11 10 9 / 0.85), transparent);
+}
+
+/* ── Load-in: the frame cuts in from a shutter ──────────────────────────── */
+.shutter {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: var(--color-ink);
+  transform-origin: right center;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+.shutter::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: var(--color-ember);
+}
+
+.rise {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shutter {
+    animation: shutter 1.15s var(--ease-cut) 0.35s both;
+  }
+
+  .rise {
+    animation: rise 1.2s var(--ease-out-expo) both;
+    animation-delay: var(--delay, 0s);
+  }
+
+  .fadeIn {
+    animation: fade 1s ease both;
+    animation-delay: var(--delay, 0s);
+  }
+
+  .scrollCue {
+    animation: cue 2.4s var(--ease-cut) 1.6s infinite;
+  }
+}
+
+@keyframes shutter {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translate3d(0, 105%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cue {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  45% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  55% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+  100% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}
+
+/* Reduced motion: no pinned expansion. The frame simply sits in place. */
+@media (prefers-reduced-motion: reduce) {
+  .window,
+  .corner {
+    display: none;
+  }
+}

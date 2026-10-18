@@ -1,0 +1,144 @@
+/* src/components/services/service-stage.module.css */
+.monitor {
+  container-type: size;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 75% at var(--glow), rgb(255 92 31 / 0.2), transparent 70%),
+    linear-gradient(160deg, var(--color-ink-3), var(--color-ink) 70%);
+}
+
+/* Format guide: everything outside it is masked, like a crop overlay. */
+.guide {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  aspect-ratio: var(--ar);
+  width: min(80cqw, calc(70cqh * var(--ar)));
+  transform: translate(-50%, -50%);
+  border: 1px solid rgb(242 235 221 / 0.4);
+  box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.42);
+}
+
+.guide::before {
+  content: "";
+  position: absolute;
+  inset: 9%;
+  border: 1px dashed rgb(242 235 221 / 0.14);
+}
+
+.guideLabel {
+  position: absolute;
+  right: 0;
+  top: -1.6em;
+  font-size: 0.625rem;
+  color: rgb(242 235 221 / 0.7);
+}
+
+.verb {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15cqw;
+  color: var(--color-ivory);
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+/* ── Timeline ───────────────────────────────────────────────────────────── */
+.tracks {
+  --label-w: 2.75rem;
+  position: relative;
+  display: grid;
+  gap: 5px;
+}
+
+.ruler {
+  margin-left: var(--label-w);
+  height: 0.75rem;
+  margin-bottom: 3px;
+  border-bottom: 1px solid var(--color-line);
+  background:
+    repeating-linear-gradient(to right, rgb(242 235 221 / 0.35) 0 1px, transparent 1px 10%),
+    repeating-linear-gradient(to right, rgb(242 235 221 / 0.14) 0 1px, transparent 1px 2.5%);
+  background-size:
+    100% 100%,
+    100% 45%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+.lane {
+  display: flex;
+  align-items: center;
+}
+
+.laneLabel {
+  width: var(--label-w);
+  flex-shrink: 0;
+  font-size: 0.625rem;
+}
+
+.track {
+  position: relative;
+  flex: 1;
+  height: 1.375rem;
+  border-radius: 2px;
+  background: rgb(0 0 0 / 0.35);
+}
+
+.clip {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  transform-origin: left center;
+  border-left: 1px solid var(--color-ink);
+  border-right: 1px solid var(--color-ink);
+  border-radius: 2px;
+}
+
+.clipGfx {
+  background: rgb(255 92 31 / 0.82);
+}
+
+.clipPicture {
+  background: linear-gradient(to bottom, rgb(242 235 221 / 0.26), rgb(242 235 221 / 0.16));
+}
+
+.clipVoice {
+  background:
+    repeating-linear-gradient(to right, rgb(255 138 85 / 0.55) 0 1px, transparent 1px 3px),
+    rgb(178 58 12 / 0.4);
+  mask-image: linear-gradient(to bottom, transparent 8%, black 30%, black 70%, transparent 92%);
+}
+
+.clipMusic {
+  background:
+    repeating-linear-gradient(to right, rgb(242 235 221 / 0.24) 0 1px, transparent 1px 4px),
+    rgb(242 235 221 / 0.07);
+}
+
+.playhead {
+  position: absolute;
+  top: 0;
+  bottom: -4px;
+  left: calc(var(--label-w) + (100% - var(--label-w)) * 0.38);
+  width: 1px;
+  background: var(--color-ember);
+}
+
+.playhead::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 11px;
+  height: 10px;
+  background: var(--color-ember);
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 50% 100%, 0 55%);
+}
