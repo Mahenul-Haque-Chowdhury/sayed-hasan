@@ -30,6 +30,8 @@ export interface SiteConfig {
   wordmark: string;
   role: string;
   upworkUrl: string;
+  /** Direct contact address, shown in the contact section and menu. */
+  email: string;
   /** Set to null to fall back to the typographic portrait slot. */
   portrait: Portrait | null;
   showreel: Showreel;
@@ -41,6 +43,7 @@ export const site: SiteConfig = {
   wordmark: "SAYED HASAN",
   role: "Video editor",
   upworkUrl: "https://www.upwork.com/freelancers/~015317c3bb29fc4926",
+  email: "anik030.sa@gmail.com",
   portrait: {
     src: portraitImage,
     alt: "Sayed Hasan in a beige blazer and black shirt, standing on a tree-lined path.",
@@ -55,6 +58,9 @@ export const site: SiteConfig = {
     { value: "Top Rated", label: "Status on Upwork" },
   ],
 };
+
+/** mailto link with a subject line filled in. */
+export const emailHref = `mailto:${site.email}?subject=${encodeURIComponent("Video editing project")}`;
 
 export interface Chapter {
   id: string;

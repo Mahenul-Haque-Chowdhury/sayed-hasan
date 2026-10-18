@@ -164,6 +164,7 @@ export function Hero() {
             <div className={`${styles.slotArea} relative h-full lg:col-span-8`}>
               <div ref={slotRef} className={styles.slot}>
                 <HeroScene
+                  withReel={!ready || reduceMotion === true}
                   media={reelInSlot && reel ? <ShowreelVideo ref={videoRef} src={reel} autoPlay={false} /> : null}
                 />
                 <div className="crop-marks pointer-events-none absolute inset-2.5" aria-hidden="true" />

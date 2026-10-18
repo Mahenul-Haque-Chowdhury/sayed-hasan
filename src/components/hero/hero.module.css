@@ -143,6 +143,78 @@
   );
 }
 
+/* ── Work reel: three rows of project stills gliding past ─────────────────
+   Pure CSS transforms, so the compositor runs it without touching scroll. */
+.reel {
+  --w: clamp(150px, 21vw, 420px);
+  --gap: clamp(8px, 0.85vw, 16px);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgb(255 92 31 / 0.12), transparent 70%),
+    var(--color-ink-2);
+}
+
+.row {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Tiles carry their own trailing gap so the second copy lines up exactly at -50%. */
+.tile {
+  position: relative;
+  flex: none;
+  width: var(--w);
+  aspect-ratio: 16 / 9;
+  margin-right: var(--gap);
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-ui);
+  background: var(--color-ink-3);
+}
+
+.tile img {
+  filter: saturate(0.82) brightness(0.82);
+}
+
+.rowDim .tile img {
+  filter: saturate(0.6) brightness(0.5);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rowLeft {
+    animation: reel-left var(--dur) linear var(--offset) infinite;
+  }
+
+  .rowRight {
+    animation: reel-right var(--dur) linear var(--offset) infinite;
+  }
+}
+
+@keyframes reel-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes reel-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .sun {
   position: absolute;
   left: 50%;

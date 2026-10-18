@@ -1,6 +1,7 @@
 // src/components/contact.tsx
 import type { CSSProperties } from "react";
-import { site } from "@/content/site";
+import { emailHref, site } from "@/content/site";
+import { CopyEmail } from "./copy-email";
 import { ChapterMarker } from "./chapter-marker";
 import { ExternalLabel } from "./external-label";
 import { Dot } from "./section-heading";
@@ -41,18 +42,30 @@ export function Contact() {
             <p className="max-w-[30ch] text-lg leading-relaxed md:text-xl md:leading-relaxed">
               Have a channel, campaign, or documentary in mind? Let&rsquo;s talk about the edit.
             </p>
-            <a
-              href={site.upworkUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-ink min-h-16 w-full justify-between px-7 text-base sm:w-auto sm:self-start md:text-lg"
-            >
-              Contact me on Upwork
-              <ExternalLabel />
-              <span aria-hidden="true" className="btn-arrow btn-arrow-up text-ember">
-                ↗
-              </span>
-            </a>
+            <div className="flex flex-col gap-3 sm:items-start">
+              <a
+                href={site.upworkUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ink min-h-16 w-full justify-between px-7 text-base sm:w-80 md:text-lg"
+              >
+                Contact me on Upwork
+                <ExternalLabel />
+                <span aria-hidden="true" className="btn-arrow btn-arrow-up text-ember">
+                  ↗
+                </span>
+              </a>
+              <a
+                href={emailHref}
+                className="btn min-h-16 w-full justify-between border border-ink-line px-7 text-base text-ink hover:border-ink hover:bg-ink/5 sm:w-80 md:text-lg"
+              >
+                Email me
+                <span aria-hidden="true" className="btn-arrow">
+                  →
+                </span>
+              </a>
+            </div>
+            <CopyEmail email={site.email} />
           </div>
         </div>
       </div>

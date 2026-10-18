@@ -3,7 +3,7 @@
 
 import { motion, useMotionValueEvent, useScroll, useSpring } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { chapters, openingChapter, site, type Chapter } from "@/content/site";
+import { chapters, emailHref, openingChapter, site, type Chapter } from "@/content/site";
 import { scrollToFrames, toTimecode } from "@/lib/timecode";
 import { ExternalLabel } from "./external-label";
 import { getLenis } from "./smooth-scroll";
@@ -197,6 +197,9 @@ export function SiteHeader() {
               <span aria-hidden="true" className="btn-arrow btn-arrow-up">
                 ↗
               </span>
+            </a>
+            <a href={emailHref} className="btn btn-ghost mt-3 w-full" onClick={() => closeMenu(false)}>
+              Email {site.email}
             </a>
           </div>
         </div>
