@@ -86,6 +86,17 @@ export function Contact() {
         >
           {site.wordmark}
         </p>
+        <p className="eyebrow mt-6 text-center text-paper-dim">
+          Designed by{" "}
+          <a
+            href="https://mahenul.com"
+            target="_blank"
+            rel="noopener"
+            className="link-underline text-ink"
+          >
+            Mahenul Haque Chowdhury
+          </a>
+        </p>
       </footer>
     </section>
   );
